@@ -19,6 +19,8 @@ kotlin-serialization = "1.8.0"
 hilt = "2.55"
 androidx-hilt = "1.2.0"
 
+circuit = "0.31.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,6 +38,9 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+# circuit
+circuit-foundation = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit"}
 
 # Kotlin
 kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
@@ -59,6 +64,7 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp" }
 
 [bundles]
+circuit = ["circuit-foundation"]
 hilt = ["hilt-android", "hilt-navigation-compose"]
 coil = ["coil-compose", "coil-network-okhttp"]
 retrofit = ["retrofit", "retrofit-converter-gson", "logging-interceptor"]
