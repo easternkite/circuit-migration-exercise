@@ -1,23 +1,25 @@
 package com.example.sample_mvi.features.example
 
-import com.example.sample_mvi.core.common.mvi.SideEffect
-import com.example.sample_mvi.core.common.mvi.UiAction
-import com.example.sample_mvi.core.common.mvi.UiState
+import com.slack.circuit.runtime.CircuitUiEvent
+import com.slack.circuit.runtime.CircuitUiState
+import com.slack.circuit.runtime.screen.Screen
+import kotlinx.parcelize.Parcelize
 
-data class ExampleUiState(
-    val isLoading: Boolean = false,
-    val data: String = "",
-    val errorMessage: String = "",
-) : UiState
+@Parcelize
+data object ExampleScreen : Screen {
+    data class State(
+        val isLoading: Boolean = false,
+        val data: String = "",
+        val errorMessage: String = "",
+        val eventSink: (Event) -> Unit
+    ) : CircuitUiState
 
-sealed interface ExampleEvent : SideEffect {
-    data class Loading(val isLoading: Boolean) : ExampleEvent
-    data class RequestData(val data: String) : ExampleEvent
-    data class Error(val message: String) : ExampleEvent
-    data class ShowToast(val message: String) : ExampleEvent
+    sealed interface Event : CircuitUiEvent {
+        data class RequestData(val data: String) : Event
+        data class Error(val message: String) : Event
+        data class ShowToast(val message: String) : Event
+    }
 }
 
-sealed interface ExampleAction : UiAction {
-    data class FetchData(val url: String) : ExampleAction
-    data class ShowToast(val message: String) : ExampleAction
-}
+
+
