@@ -14,12 +14,15 @@ import com.example.sample_mvi.features.example.ExampleUiFactory
 import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.CircuitContent
+import com.slack.circuit.runtime.presenter.presenterOf
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val circuit = Circuit.Builder()
-            .addPresenter<ExampleScreen, ExampleScreen.State>(ExamplePresenter())
+            .addPresenter<ExampleScreen, ExampleScreen.State> { _, _, _ ->
+                presenterOf { ExamplePresenter() }
+            }
             .addUiFactory(ExampleUiFactory())
             .build()
 
