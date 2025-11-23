@@ -41,6 +41,8 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 
 # circuit
 circuit-foundation = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit"}
+circuit-codegen-annotations = { group = "com.slack.circuit", name = "circuit-codegen-annotations", version.ref = "circuit"}
+circuit-codegen-compiler = { group = "com.slack.circuit", name = "circuit-codegen", version.ref = "circuit"}
 
 # Kotlin
 kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
@@ -64,7 +66,7 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp" }
 
 [bundles]
-circuit = ["circuit-foundation"]
+circuit = ["circuit-foundation", "circuit-codegen-annotations"]
 hilt = ["hilt-android", "hilt-navigation-compose"]
 coil = ["coil-compose", "coil-network-okhttp"]
 retrofit = ["retrofit", "retrofit-converter-gson", "logging-interceptor"]

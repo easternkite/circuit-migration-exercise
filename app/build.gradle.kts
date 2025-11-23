@@ -5,11 +5,12 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.example.sample_mvi"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.sample_mvi"
@@ -64,4 +65,5 @@ dependencies {
     implementation(libs.bundles.retrofit)
 
     implementation(libs.bundles.circuit)
+    ksp(libs.circuit.codegen.compiler)
 }
