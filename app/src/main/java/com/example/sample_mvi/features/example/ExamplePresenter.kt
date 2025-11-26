@@ -3,10 +3,9 @@ package com.example.sample_mvi.features.example
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
-import com.slack.circuit.runtime.presenter.Presenter
+import com.slack.circuit.retained.rememberRetained
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -15,9 +14,9 @@ fun ExamplePresenter(): ExampleScreen.State {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
-    val isLoading = remember { mutableStateOf(false) }
-    val data = remember { mutableStateOf("") }
-    val errorMessage = remember { mutableStateOf("") }
+    val isLoading = rememberRetained { mutableStateOf(false) }
+    val data = rememberRetained { mutableStateOf("") }
+    val errorMessage = rememberRetained { mutableStateOf("") }
 
     return ExampleScreen.State(
         isLoading = isLoading.value,
