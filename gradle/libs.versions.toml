@@ -21,6 +21,9 @@ androidx-hilt = "1.2.0"
 
 circuit = "0.31.0"
 
+nav3Core = "1.0.0"
+lifecycleViewmodelNav3 = "2.10.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -65,7 +68,13 @@ retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp" }
 
+# Naviagation 3
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
+
 [bundles]
+navigation3 = ["androidx-navigation3-runtime", "androidx-navigation3-ui", "androidx-lifecycle-viewmodel-navigation3"]
 circuit = ["circuit-foundation", "circuit-codegen-annotations"]
 hilt = ["hilt-android", "hilt-navigation-compose"]
 coil = ["coil-compose", "coil-network-okhttp"]

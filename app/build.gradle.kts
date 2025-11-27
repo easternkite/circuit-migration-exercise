@@ -66,4 +66,6 @@ dependencies {
 
     implementation(libs.bundles.circuit)
     ksp(libs.circuit.codegen.compiler)
+
+    implementation(libs.bundles.navigation3)
 }
