@@ -6,6 +6,7 @@ import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.CircuitContent
 import com.slack.circuit.runtime.CircuitUiState
+import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.screen.Screen
 import com.slack.circuit.runtime.ui.Ui
@@ -15,11 +16,11 @@ open class CircuitScope {
     private lateinit var content: @Composable () -> Unit
 
     inline fun <reified S : Screen, UiState : CircuitUiState> presenter(
-        crossinline factory: (screen: S) -> Presenter<UiState>
+        crossinline factory: (screen: S, navigator: Navigator) -> Presenter<UiState>
     ) = apply {
-        circuit.addPresenterFactory { screen, _, _ ->
+        circuit.addPresenterFactory { screen, navigator, _ ->
             if (screen is S) {
-                factory(screen)
+                factory(screen, navigator)
             } else {
                 null
             }
@@ -31,8 +32,14 @@ open class CircuitScope {
         circuit.addUiFactory(factory)
     }
 
-    fun content(screen: Screen, modifier: Modifier = Modifier) {
-        content = { CircuitContent(screen, modifier) }
+    fun content(screen: Screen, modifier: Modifier = Modifier, navigator: Navigator) {
+        content = {
+            CircuitContent(
+                screen = screen,
+                modifier = modifier,
+                navigator = navigator
+            )
+        }
     }
 
     @Composable

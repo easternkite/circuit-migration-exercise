@@ -11,13 +11,14 @@ data object ExampleScreen : Screen {
         val isLoading: Boolean = false,
         val data: String = "",
         val errorMessage: String = "",
-        val eventSink: (Event) -> Unit
+        val eventSink: (Event) -> Unit = {}
     ) : CircuitUiState
 
     sealed interface Event : CircuitUiEvent {
         data class RequestData(val data: String) : Event
         data class Error(val message: String) : Event
         data class ShowToast(val message: String) : Event
+        object NavigateToDetail : Event
     }
 }
 

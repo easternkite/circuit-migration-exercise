@@ -27,6 +27,12 @@ fun ExampleScreen(
                 Text("Fetch Data")
             }
             Text(text = state.data)
+
+            Button(onClick = {
+                state.eventSink(ExampleScreen.Event.NavigateToDetail)
+            }) {
+                Text("Go To Detail")
+            }
         }
 
         if(state.isLoading) {
