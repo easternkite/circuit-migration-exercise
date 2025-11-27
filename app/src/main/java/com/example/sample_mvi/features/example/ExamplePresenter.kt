@@ -5,12 +5,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
+import com.example.sample_mvi.features.detail.DetailScreen
 import com.slack.circuit.retained.rememberRetained
+import com.slack.circuit.runtime.Navigator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun ExamplePresenter(): ExampleScreen.State {
+fun ExamplePresenter(
+    navigator: Navigator
+): ExampleScreen.State {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
@@ -34,6 +38,9 @@ fun ExamplePresenter(): ExampleScreen.State {
             }
             is ExampleScreen.Event.Error -> errorMessage.value = event.message
             is ExampleScreen.Event.ShowToast -> { Toast.makeText(context, event.message, Toast.LENGTH_SHORT).show() }
+            is ExampleScreen.Event.NavigateToDetail -> {
+                navigator.goTo(DetailScreen)
+            }
         }
     }
 }
